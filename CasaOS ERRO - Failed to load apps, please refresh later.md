@@ -1,4 +1,4 @@
-# CasaOS bugado: "Failed to load apps, please refresh later"
+# Erro no CasaOS: "Failed to load apps, please refresh later"
 Esse erro geralmente acontece depois de rodar o comando sudo apt upgrade. O problema ta rolando porque o CasaOS ainda não reconhece as versões mais recentes do Docker (29.x). A solução atual é fazer o downgrade e travar a atualização do Docker.
 
 * 1. Preparar o sistema e repositórios
