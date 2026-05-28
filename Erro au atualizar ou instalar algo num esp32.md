@@ -9,7 +9,7 @@
 ### se voce tiver no windows voce vai abrir:
 
 ## C:\Users<username>.arduinoIDE\arduino-cli.yaml
-                                              *se voce tiver no mac recomendo se matar *
+                                              *se voce tiver no mac recomendo desistir*
 ## depois de abrir o yaml voce vai adicionar:
 
 network:
