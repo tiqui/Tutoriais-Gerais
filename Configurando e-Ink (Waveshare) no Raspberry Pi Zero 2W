@@ -1,7 +1,7 @@
 # Configurando e-Ink (Waveshare) no Raspberry Pi Zero 2W
 Este tutorial resolve os erros de GPIO (lgpio), Pillow (JPEG/Build) e o bloqueio de Ambiente Externo (PEP 668) das versões mais recentes do Raspberry Pi OS.
 
-1. Preparação do Hardware e Sistema
+## 1. Preparação do Hardware e Sistema
 Antes de codar, habilite a comunicação física (SPI) do display:
 
 No terminal: sudo raspi-config
@@ -19,10 +19,52 @@ O Raspberry precisa de bibliotecas C para processar imagens e controlar os pinos
 -
 sudo apt update
 sudo apt install -y python3-pip python3-venv python3-full git libopenjp2-7 libjpeg-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev libharfbuzz-dev libfribidi-dev python3-lgpio
-3. Criando o Ambiente Virtual (O Isolamento)
+
+## 3. Criando o Ambiente Virtual (O Isolamento)
 Para evitar o erro externally-managed-environment, trabalhamos dentro de um env:
 -
 mkdir ~/meu_projeto && cd ~/meu_projeto
 python3 -m venv env
 source env/bin/activate
 Dica: Sempre que abrir o terminal, use o source env/bin/activate para entrar na "caixa". `
+
+## 4. Instalação das Bibliotecas Python
+Com o (env) ativo, instale as ferramentas de imagem, notícias e o novo driver de GPIO:
+
+pip install --upgrade pip
+pip install Pillow feedparser gpiozero rpi-lgpio spidev
+
+
+5. Instalando o Driver da Waveshare (Manual)
+Como o driver da Waveshare não está no repositório padrão do Pip para todas as versões, instalamos direto da fonte:
+
+cd ~/meu_projeto
+git clone https://github.com/waveshareteam/e-Paper.git
+cd e-Paper/RaspberryPi_JetsonNano/python/
+pip install .
+cd ~/meu_projeto && rm -rf e-Paper  # Limpeza após instalar
+6. Script de Teste (Validando o Sucesso)
+
+
+Crie o arquivo teste_tela.py para ver se ta tudo funcionando:
+
+Python
+from waveshare_epd import epd2in13_V4
+from PIL import Image, ImageDraw, ImageFont
+
+epd = epd2in13_V4.EPD()
+epd.init()
+epd.Clear()
+
+# Criando imagem 250x122 (Modo 1-bit)
+img = Image.new('1', (epd.height, epd.width), 255)
+draw = ImageDraw.Draw(img)
+
+# Desenho simples
+draw.rectangle((5, 5, 245, 117), outline=0, width=2)
+draw.ellipse((100, 36, 150, 86), fill=0)
+draw.text((20, 10), "SISTEMA OPERACIONAL", fill=0)
+
+epd.display(epd.getbuffer(img))
+epd.sleep()
+print("Tela atualizada com sucesso!")
