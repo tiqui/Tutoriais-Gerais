@@ -1,0 +1,28 @@
+# Configurando e-Ink (Waveshare) no Raspberry Pi Zero 2W
+Este tutorial resolve os erros de GPIO (lgpio), Pillow (JPEG/Build) e o bloqueio de Ambiente Externo (PEP 668) das versões mais recentes do Raspberry Pi OS.
+
+1. Preparação do Hardware e Sistema
+Antes de codar, habilite a comunicação física (SPI) do display:
+
+No terminal: sudo raspi-config
+
+Vá em: Interface Options > SPI > Yes.
+
+Aproveite e adicione seu usuário aos grupos de hardware:
+sudo usermod -a -G spi,gpio,i2c $USER
+
+Reboot obrigatório: sudo reboot
+
+2. Dependências de Sistema (O "Cimento")
+O Raspberry precisa de bibliotecas C para processar imagens e controlar os pinos novos:
+
+-
+sudo apt update
+sudo apt install -y python3-pip python3-venv python3-full git libopenjp2-7 libjpeg-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev libharfbuzz-dev libfribidi-dev python3-lgpio
+3. Criando o Ambiente Virtual (O Isolamento)
+Para evitar o erro externally-managed-environment, trabalhamos dentro de um env:
+-
+mkdir ~/meu_projeto && cd ~/meu_projeto
+python3 -m venv env
+source env/bin/activate
+Dica: Sempre que abrir o terminal, use o source env/bin/activate para entrar na "caixa". `
