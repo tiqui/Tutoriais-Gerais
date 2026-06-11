@@ -25,7 +25,8 @@ Centralizar conteúdos úteis em um único lugar, facilitando a busca por soluç
 3. Abra o tutorial correspondente.
 4. Siga os passos descritos.
 
-## 🔍 Estrutura
+
+<!-- ## 🔍 Estrutura
 
 ```text
 Tutoriais-Gerais/
@@ -36,3 +37,4 @@ Tutoriais-Gerais/
 ├── Android/
 ├── ESP32/
 └── Outros/
+ -->
