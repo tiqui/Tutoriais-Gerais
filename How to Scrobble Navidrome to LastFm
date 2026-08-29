@@ -1,0 +1,69 @@
+# Configurar o Last.fm no Navidrome pelo CasaOS
+
+Este tutorial explica como adicionar as credenciais da API do Last.fm ao Navidrome instalado pelo CasaOS e, depois, conectar sua conta do Last.fm.
+
+## 1. Acessar as configurações do Navidrome no CasaOS
+
+1. Abra o painel do **CasaOS** no navegador.
+2. Localize o **Navidrome** na lista de aplicativos.
+3. Clique nos **três pontinhos (`...`)** no canto superior direito do ícone do Navidrome.
+4. Selecione **Configurações (Settings)**.
+
+## 2. Adicionar as variáveis de ambiente
+
+Na janela de configurações:
+
+1. Role a tela para baixo até encontrar a seção **Environment Variables (Variáveis de Ambiente)**.
+2. Clique no botão de **Adicionar** (geralmente representado pelo ícone `+`).
+3. Adicione as duas variáveis abaixo.
+
+### Primeira variável
+
+| Campo     | Valor                  |
+| --------- | ---------------------- |
+| **Key**   | `ND_LASTFM_APIKEY`     |
+| **Value** | Sua API Key do Last.fm |
+
+### Segunda variável
+
+| Campo     | Valor                        |
+| --------- | ---------------------------- |
+| **Key**   | `ND_LASTFM_SECRET`           |
+| **Value** | Seu Shared Secret do Last.fm |
+
+> **Importante:** substitua os valores acima pelas credenciais reais da sua aplicação no Last.fm.
+
+## 3. Salvar e reiniciar
+
+Depois de adicionar as duas variáveis:
+
+1. Clique em **Salvar (Save)** no canto inferior da janela do CasaOS.
+2. O CasaOS deverá reiniciar o container do **Navidrome** automaticamente para aplicar as alterações.
+3. Aguarde até que o Navidrome volte a ficar online.
+
+## 4. Conectar o Last.fm ao Navidrome
+
+Depois que o Navidrome estiver funcionando novamente:
+
+1. Acesse a interface web do **Navidrome**.
+2. Clique no seu **avatar**, no canto superior direito.
+3. Acesse **Personal**.
+4. Localize a opção **Last.fm**.
+5. Clique em **Connect**.
+6. Siga as instruções para autorizar a conexão com sua conta do Last.fm.
+
+Após a autorização, o Navidrome poderá utilizar sua conta do Last.fm para o **scrobbling**.
+
+---
+
+## Problemas?
+
+Caso encontre algum problema durante a configuração, alguns erros comuns incluem:
+
+* Erro de conexão com o Last.fm.
+* Erro **"Bad Request"**.
+* API Key ou Shared Secret incorretos.
+* Last.fm não aparece na página de configurações do usuário.
+* Scrobbling não está funcionando.
+
+Também é possível configurar o **scrobbling para múltiplos usuários** do Navidrome.
